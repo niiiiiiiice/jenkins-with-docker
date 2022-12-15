@@ -1,0 +1,17 @@
+version: '3.4'
+
+volumes:
+  jenkins_data:
+
+services:
+  jenkins:
+    image: ${DOCKER_REGISTRY-}jenkins
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8050:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_data:/var/jenkins_home
