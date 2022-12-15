@@ -28,8 +28,9 @@ RUN apt-get update  \
     && apt-get autoremove  \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
-RUN usermod -u $HOST_UID jenkins
-RUN groupmod -g $HOST_GID docker
-RUN usermod -aG docker jenkins
+RUN usermod -u $HOST_UID jenkins \
+    && groupmod -g $HOST_GID docker \
+    && usermod -aG docker jenkins \
+    && gpasswd -a jenkins docker
 
 USER jenkins
