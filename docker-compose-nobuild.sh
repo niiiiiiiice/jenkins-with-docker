@@ -1,1 +1,1 @@
-docker compose up --no-build -d
+docker compose --env-file ./env.local up --no-build -d
