@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:lts
 
-ARG HOST_UID=1000
-ARG HOST_GID=1000
+ENV HOST_UID=1004
+ENV HOST_GID=998
 
 USER root
 RUN apt-get update  \

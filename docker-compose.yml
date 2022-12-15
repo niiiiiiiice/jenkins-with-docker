@@ -6,17 +6,17 @@ volumes:
 services:
   jenkins:
     container_name: jenkins
-    image: niiiiiiiice/jenkins-with-docker:1.0
+    image: niiiiiiiice/jenkins-with-docker:1.1
     build:
-      args:
-        HOST_UID: ${HOST_UID}
-        HOST_GID: ${HOST_GID}
       context: .
       dockerfile: Dockerfile
     restart: always
     ports:
       - "8050:8080"
       - "50000:50000"
+    environment:
+      - HOST_UID:${HOST_UID}
+      - HOST_GID:${HOST_GID}
     volumes:
       - jenkins_data:/var/jenkins_home
       - /usr/local/jenkins-conf:/usr/local/jenkins-conf
