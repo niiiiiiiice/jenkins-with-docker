@@ -1,7 +1,9 @@
 FROM jenkins/jenkins:lts
 
-ENV HOST_UID=1004
-ENV HOST_GID=998
+#id -u jenkins
+ARG HOST_UID=1001
+#getent group | grep docker
+ARG HOST_GID=999
 
 USER root
 RUN apt-get update  \
