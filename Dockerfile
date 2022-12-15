@@ -1,7 +1,9 @@
 FROM jenkins/jenkins:lts
 
 #id -u jenkins
+ARG HOST_UID=1001
 #getent group | grep docker
+ARG HOST_GID=999
 
 USER root
 RUN apt-get update  \
@@ -30,7 +32,5 @@ RUN usermod -u $HOST_UID jenkins \
     && groupmod -g $HOST_GID docker \
     && usermod -aG docker jenkins \
     && gpasswd -a jenkins docker
-
-RUN docker login -u $DOCKER_LOGIN -p $DOCKER_PASS
 
 USER jenkins
