@@ -5,7 +5,7 @@ volumes:
 
 services:
   jenkins:
-    image: ${DOCKER_REGISTRY-}jenkins
+    image: niiiiiiiice/jenkins-with-docker:1.0
     build:
       context: .
       dockerfile: Dockerfile
