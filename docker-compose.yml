@@ -5,8 +5,12 @@ volumes:
 
 services:
   jenkins:
+    container_name: jenkins
     image: niiiiiiiice/jenkins-with-docker:1.0
     build:
+      args:
+        HOST_UID: ${HOST_UID}
+        HOST_GID: ${HOST_GID}
       context: .
       dockerfile: Dockerfile
     restart: always

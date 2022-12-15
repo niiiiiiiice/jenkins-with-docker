@@ -1,5 +1,8 @@
 FROM jenkins/jenkins:lts
 
+ARG HOST_UID=1000
+ARG HOST_GID=1000
+
 USER root
 RUN apt-get update  \
     && apt-get upgrade -y  \
@@ -23,7 +26,8 @@ RUN apt-get update  \
     && apt-get autoremove  \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 
-RUN usermod -aG docker jenkins  \
-    && gpasswd -a jenkins docker 
+RUN usermod -u $HOST_UID jenkins
+RUN groupmod -g $HOST_GID docker
+RUN usermod -aG docker jenkins
 
 USER jenkins
